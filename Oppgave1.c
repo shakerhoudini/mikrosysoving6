@@ -1,25 +1,24 @@
 #define F_CPU 4000000UL
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdbool.h>
 #include <util/delay.h>
 
-#define TIMER 0x01AB			// max value
-uint16_t dutycycle = 0x0000;	// current value
+//Variables
 
+#define TIMER 0x01AB            // max value
+uint16_t dutycycle = 0x0000;	// current value
 bool updown = true;
 
+//Function initialization
 void PWM_Init();
 
 int main(void)
 {
 	//Pins WO0-W02 are on PORTD 0-2
 	PORTD.DIRSET |= PIN2_bm | PIN1_bm | PIN0_bm; //Enable output on them
-	
 	PWM_Init();
 	
-    /* Replace with your application code */
     while (1) 
     {
 		if(updown){
